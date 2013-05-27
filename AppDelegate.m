@@ -17,10 +17,15 @@
 
 @implementation AppDelegate
 
+NSString *const SCSessionStateChangedNotification =
+@"com.facebook.Scrumptious:SCSessionStateChangedNotification";
+
 @synthesize navController = _navController;
 @synthesize mainViewController = _mainViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [FBProfilePictureView class];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.mainViewController = [[ViewController alloc]
@@ -87,6 +92,10 @@
         default:
             break;
     }
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:SCSessionStateChangedNotification
+     object:session];
     
     if (error) {
         UIAlertView *alertView = [[UIAlertView alloc]
