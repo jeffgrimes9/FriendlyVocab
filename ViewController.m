@@ -6,12 +6,17 @@
 //  Copyright (c) 2013 Jeff Grimes. All rights reserved.
 //
 
+#import <FacebookSDK/FacebookSDK.h>
 #import "ViewController.h"
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (IBAction)logoutButtonPressed:(id)sender {
+    [FBSession.activeSession closeAndClearTokenInformation];
 }
 
 @end
